@@ -3,9 +3,6 @@ import sqlite3
 import uuid
 import sqlite3 as sql
 import pandas as pd
-# app = Flask(__name__)
-
-# path = "./data/JM of BATT Surface Tech CT-HWT Test Data Summary.xlsx"
 
 class database:
     path = None
