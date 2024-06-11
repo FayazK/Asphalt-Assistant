@@ -3,10 +3,10 @@ import { Card, Row, Col, Alert, error } from 'antd';
 import UploadFile from './Uploadfile';
 import ChatWindow from './ChatWindow';
 import { BrowserRouter } from 'react-router-dom';
-
+import config from "../config";
 
 const { Meta } = Card;
-const BASE_URL = 'http://127.0.0.1:5000/';
+// const BASE_URL = 'http://127.0.0.1:5000/';
 
 const cardStyle = {
   width: 200,
@@ -29,7 +29,7 @@ const AssistantCards = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(BASE_URL);
+      const response = await fetch(`${config.apiUrl}/`);
       const jsonData = await response.json();
       setData(jsonData);
 
