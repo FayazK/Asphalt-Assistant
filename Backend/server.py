@@ -19,7 +19,8 @@ app = Flask(__name__)
 CORS(app) 
 
 load_dotenv()
-
+port = int(os.getenv('FLASK_PORT', 5000))
+flask_host = os.getenv('FLASK_HOST', '127.0.0.1')
 T_API_KEY = os.getenv('Tasking_API_KEY')
 assist_id = os.getenv('assist_id')
 taskingai.init(api_key=T_API_KEY)
@@ -34,7 +35,7 @@ def show_records():
         cur = con.cursor()
         records = cur.execute('''SELECT * FROM files''')
         for record in records:
-            data.append({'name': record[1], 'date': record[4], 'image': '/chat.png','link': f'http://127.0.0.1:5000/ask/{record[2]}'})
+            data.append({'name': record[1], 'date': record[4], 'image': '/chat.png','link': f'http://{flask_host}:{port}/ask/{record[2]}'})
         con.commit()
     con.close()
     return jsonify(data)
@@ -102,4 +103,6 @@ def index(assistant_id):
     
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.getenv('FLASK_PORT', 5000))
+    flask_host = os.getenv('FLASK_HOST', '127.0.0.1')
+    app.run(host=flask_host, port=port)
