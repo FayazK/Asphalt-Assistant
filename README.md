@@ -1,4 +1,4 @@
-###Intstruction to setupt this app
+### Intstruction to setupt this app
 
 1. first clone the repo.
 
