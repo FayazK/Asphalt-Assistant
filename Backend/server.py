@@ -19,8 +19,8 @@ app = Flask(__name__)
 CORS(app) 
 
 load_dotenv()
-port = int(os.getenv('FLASK_PORT', 5000))
-flask_host = os.getenv('FLASK_HOST', '127.0.0.1')
+port = int(os.getenv('FLASK_PORT'))
+flask_host = os.getenv('FLASK_HOST')
 T_API_KEY = os.getenv('Tasking_API_KEY')
 assist_id = os.getenv('assist_id')
 taskingai.init(api_key=T_API_KEY)
@@ -93,13 +93,12 @@ def index(assistant_id):
         u_input = data.get('message')
         if u_input:
             chat = chat_creation(assistant_id=assistant_id)
-            #"SdELxQ3VX5Vf36OnpbNSrtFd"
             response = chat_with_assitant(chat_id=chat.chat_id, assist_id=assistant_id, u_input = u_input)
             return jsonify({'message': response.content.text})
         else:
             return jsonify({'error': 'No message provided'}), 400
     
 if __name__ == '__main__':
-    port = int(os.getenv('FLASK_PORT', 5000))
-    flask_host = os.getenv('FLASK_HOST', '127.0.0.1')
+    port = int(os.getenv('FLASK_PORT'))
+    flask_host = os.getenv('FLASK_HOST')
     app.run(host=flask_host, port=port)

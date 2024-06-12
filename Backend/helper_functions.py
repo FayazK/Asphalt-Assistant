@@ -28,7 +28,7 @@ class Assistant:
         self.collection_id = None
         self.record_title = None #record name or title
         self.DATABASE_API_SCHEMA = DATABASE_API_SCHEMA
-    
+
     #create assistant with name and model for chat completion
     def Create_assistant(self, model_id, name):
         self.model_id = model_id
@@ -116,7 +116,8 @@ class Assistant:
         return assistant
     def set_assistant_id(self, api):
         Assistant.assistant_id = api
+    
     def get_assistant_id(self):
-        return self.assistant_id
+        return Assistant.assistant_id 
 
 
