@@ -1,10 +1,10 @@
 // const BASE_URL = 'http://127.0.0.1:5000';
 // `${BASE_URL}/ask`
-
+import config from "../config";
 
 export const ApiCall = async (message, link) => {
     try {
-        const response = await fetch(link, {
+        const response = await fetch(`${config.apiUrl}/ask/${link}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -17,9 +17,9 @@ export const ApiCall = async (message, link) => {
         }
         return await response.json();
     } catch (error) {
-        console.error('Error ishaq:', error);
-        console.error('Response status ishaq:', error.response.status);
-        console.error('Response data ishaq:', error.response.data)
+        console.error('Error :', error);
+        console.error('Response status :', error.response.status);
+        console.error('Response data :', error.response.data)
         return { error: 'An error occurred while sending the message to the backend' };
 
     }

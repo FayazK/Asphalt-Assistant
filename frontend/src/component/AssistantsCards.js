@@ -4,9 +4,8 @@ import UploadFile from './Uploadfile';
 import ChatWindow from './ChatWindow';
 import { BrowserRouter } from 'react-router-dom';
 import config from "../config";
-
+import { Outlet, useNavigate } from 'react-router-dom';
 const { Meta } = Card;
-// const BASE_URL = 'http://127.0.0.1:5000/';
 
 const cardStyle = {
   width: 200,

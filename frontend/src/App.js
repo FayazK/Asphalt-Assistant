@@ -4,6 +4,18 @@ import AssistantCards from './component/AssistantsCards';
 import ChatWindow from './component/ChatWindow';
 import ClickableComponent from './component/Test'
 import {useState} from 'react'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <AssistantCards />
+  },,
+]);
+
 function App() {
   const [display, setDisplay] = useState(false)
   const instructions = (
@@ -16,7 +28,7 @@ function App() {
       {/* <ChatWindow/> */}
       {/* <UploadFile/> */}
 
-      <AssistantCards />
+      <RouterProvider router={router} />
       {/* <ClickableComponent/> */}
     </div>
   );

@@ -35,11 +35,11 @@ def show_records():
         cur = con.cursor()
         records = cur.execute('''SELECT * FROM files''')
         for record in records:
-            data.append({'name': record[1], 'date': record[4], 'image': '/chat.png','link': f'http://{flask_host}:{port}/ask/{record[2]}'})
+            data.append({'name': record[1], 'date': record[4], 'image': '/chat.png','link': f'{record[2]}'})
         con.commit()
     con.close()
     return jsonify(data)
-
+#http://{flask_host}:{port}/ask/{record[2]}
 @app.route('/database/<path:name>',methods=['GET'])
 def query_database(name):
     data = []
@@ -69,7 +69,6 @@ def query_database(name):
         con.commit()
     return jsonify(data)
 
-    
 @app.route("/upload",  methods=['GET','POST'])
 def File_Upload():
     if 'file' not in request.files:

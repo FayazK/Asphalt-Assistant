@@ -1,5 +1,10 @@
+import config from "../config";
+
 const [data, setData] = useState([]);
-const BASE_URL = 'http://127.0.0.1:5000/';
+
+
+
+// const BASE_URL = 'http://127.0.0.1:5000/';
 export const ApiCard = async () => {
     const [data, setData] = useState([]);
 
@@ -9,7 +14,7 @@ export const ApiCard = async () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(BASE_URL);
+            const response = await fetch(`${config.apiUrl}/`);
             const jsonData = await response.json();
             setData(jsonData);
         } catch (error) {
