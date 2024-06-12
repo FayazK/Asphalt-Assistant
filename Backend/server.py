@@ -27,7 +27,6 @@ taskingai.init(api_key=T_API_KEY)
 
 UPLOAD_FOLDER = 'data'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 @app.route('/')
 def show_records():
     data = []
@@ -36,6 +35,7 @@ def show_records():
         records = cur.execute('''SELECT * FROM files''')
         for record in records:
             data.append({'name': record[1], 'date': record[4], 'image': '/chat.png','link': f'{record[2]}'})
+            print(record[2])
         con.commit()
     con.close()
     return jsonify(data)
@@ -65,7 +65,6 @@ def query_database(name):
             "CT_index": record[13]
             }
             data.append(json_record)
-            print('records === ',json_record)
         con.commit()
     return jsonify(data)
 
@@ -100,7 +99,6 @@ def index(assistant_id):
         else:
             return jsonify({'error': 'No message provided'}), 400
     
-
 if __name__ == '__main__':
     port = int(os.getenv('FLASK_PORT', 5000))
     flask_host = os.getenv('FLASK_HOST', '127.0.0.1')
