@@ -9,11 +9,22 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <AssistantCards />
-  },,
+    element: <AssistantCards />,
+    children: [
+      {
+        path: 'upload',
+        element: <UploadFile />
+      },
+      {
+        path: 'chat',
+        element: <ChatWindow />
+      }
+    ]
+  }
 ]);
 
 function App() {

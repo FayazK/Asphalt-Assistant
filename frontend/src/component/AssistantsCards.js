@@ -4,7 +4,7 @@ import UploadFile from './Uploadfile';
 import ChatWindow from './ChatWindow';
 import { BrowserRouter } from 'react-router-dom';
 import config from "../config";
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, Navigate } from 'react-router-dom';
 const { Meta } = Card;
 
 const cardStyle = {
@@ -48,11 +48,16 @@ const AssistantCards = () => {
       console.error('Response data:', error.response.data);
     }
   };
-
+  const navigate = useNavigate();
   const handleClick = (e, name, link) => {
     e.preventDefault()
     setQuery(name)
     setLink(link)
+    if (name === "Add new") {
+      navigate('/upload');
+    } else {
+      navigate('/chat');
+    }
   }
   if (error) {
     return (
@@ -121,3 +126,4 @@ const AssistantCards = () => {
 };
 
 export default AssistantCards;
+<Outlet />
