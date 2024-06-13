@@ -23,7 +23,7 @@ port = int(os.getenv('FLASK_PORT'))
 flask_host = os.getenv('FLASK_HOST')
 T_API_KEY = os.getenv('Tasking_API_KEY')
 assist_id = os.getenv('assist_id')
-taskingai.init(api_key=T_API_KEY)
+taskingai.init(api_key=T_API_KEY,host='https://tasking.fayazk.com')
 
 UPLOAD_FOLDER = 'data'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
