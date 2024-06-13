@@ -20,4 +20,3 @@ def chat_with_assitant(chat_id, assist_id, u_input):
     assistant_id= assist_id,
     chat_id= chat_id,)
     return response
-    

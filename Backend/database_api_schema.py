@@ -8,7 +8,7 @@ DATABASE_API_SCHEMA = {
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:5000"
+            "url": "https://alfred.fayazk.com"
         }
     ],
     "paths": {
