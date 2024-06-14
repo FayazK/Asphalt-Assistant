@@ -10,7 +10,7 @@ def create_or_fetch_assistant(path, assistant_id = None):
         #assistant exist only edit the assistant
         custom_assistant = Assistant()
         custom_assistant.set_assistant_id(assistant_id)
-        collection = custom_assistant.Create_collection(name="Projects records latest",embd_model_id = embd_model_id)
+        collection = custom_assistant.Create_collection(name="Projects records latest",embd_model_id = embd_model_id) #avoid using duplicate actions
         custom_assistant.Create_insert_records(path, collection.collection_id, title="Asphalt prjects records latest")
         custom_assistant.Edit_assistant(custom_assistant.get_assistant_id(), collection.collection_id)
         print(f"Already eixsting assistant with id = {assistant_id} has updated succesfully! ")
@@ -19,10 +19,12 @@ def create_or_fetch_assistant(path, assistant_id = None):
         custom_assistant = Assistant()
         assistant = custom_assistant.Create_assistant(model_id=model_id, name="Asphalt mixture expert")
         custom_assistant.set_assistant_id(assistant.assistant_id)
-        collection = custom_assistant.Create_collection(name="Projects records latest",embd_model_id = embd_model_id)
-        custom_assistant.Create_insert_records(path, collection.collection_id, title="Asphalt prjects records latest")
-        custom_assistant.Edit_assistant(custom_assistant.get_assistant_id(), collection.collection_id)
-        action = custom_assistant.Create_action()
-        custom_assistant = custom_assistant.add_action(custom_assistant.get_assistant_id(),action[0].action_id)
+        #collection = custom_assistant.Create_collection(name="Projects records latest",embd_model_id = embd_model_id)
+        collection_id = "DbgYumzz5qkxwhf9ruiinxy8"
+        custom_assistant.Create_insert_records(path, collection_id, title="Asphalt prjects records latest")
+        custom_assistant.Edit_assistant(custom_assistant.get_assistant_id(), collection_id)
+        #action = custom_assistant.Create_action()action[0].
+        action_id = "bFBdCBwHVEg9jN47NViOQTmh"
+        custom_assistant = custom_assistant.add_action(custom_assistant.get_assistant_id(),action_id)
         print(f'newly created assistant with knowledge base having id = {assistant.assistant_id} succesfully! ')
-    return (assistant.assistant_id, collection.collection_id)
+    return (assistant.assistant_id, collection_id)

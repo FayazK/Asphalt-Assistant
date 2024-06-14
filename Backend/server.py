@@ -10,6 +10,7 @@ from creating_database import database
 from dotenv import load_dotenv
 import os
 
+#X5lMGRxmL4ML018K9Kh11nC6
 def convert_excel_to_html(excel_path, html_path):
     df = pd.read_excel(excel_path)
     df.to_html(html_path)
@@ -87,12 +88,12 @@ def File_Upload():
 
 @app.route('/ask/<assistant_id>', methods=['POST'])
 def index(assistant_id):
-    chat_ids_dict = {"X5lMzHw9btOeb8Uen6mSTpZO":"SdELGnWXJya2fU2L1aUedgKy","X5lMXR1WoyggYdIaOrUNKfBm":"SdELhSxZggJBjUY28R5gi7BP","X5lMPVJWpS8hF1rdkDm10II3":"SdELSroVWAWwPhZZpw0itTxy","X5lMONdwaPHBFngspLbAdpmV":"SdELYHCo8GwGqC1BoWlepetf"}
+    chat_ids_dict = {"X5lMLXvYNm0RsOPmKCzqO6gf":"SdELRQptDqfk0gs4FxA0Bp24","X5lMc0TbYE4hif57CJe2CqQA":"SdELxEsIk1Zmg4ke73K2FQ7V","X5lMKlcWhCj5xWR7whSfmWyr":"SdELBJ7uj8V8Skf960Kr05Ri","X5lMuWyzGYpKiGYtmEebYmwr":"SdELaNDly2FXABz2vC4OAU9R"}
     if request.method == "POST":
         data = request.json
         u_input = data.get('message')
         if u_input:
-            #chat = chat_creation(assistant_id=assistant_id)  chat.chat_id
+            #chat = chat_creation(assistant_id=assistant_id)  #chat.chat_id
             response = chat_with_assitant(chat_id= chat_ids_dict[assistant_id], assist_id=assistant_id, u_input = u_input)
             return jsonify({'message': response.content.text})
         else:

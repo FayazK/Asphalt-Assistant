@@ -1,6 +1,7 @@
 import config from "../config";
 
 export const ApiCall = async (message, link) => {
+    console.log(`link api.js === ${link}`)
     try {
         const response = await fetch(`${config.apiUrl}/ask/${link}`, {
             method: 'POST',

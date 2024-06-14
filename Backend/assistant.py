@@ -3,6 +3,9 @@ import taskingai
 from dotenv import load_dotenv
 from taskingai.inference import chat_completion, SystemMessage, UserMessage
 
+load_dotenv()
+T_API_KEY = os.getenv('Tasking_API_KEY')
+taskingai.init(api_key=T_API_KEY,host='https://tasking.fayazk.com')
 
 def chat_creation(assistant_id):
     chat = taskingai.assistant.create_chat(

@@ -42,8 +42,10 @@ class Assistant:
             question: when the CT index value was 65 in Hall ACE XP what were the other values?
             answer: For this CT value of "Hall ACE XP" project the Mix type was "RPMLC", binder PG "PG64-22", and binder content "5.6" with a RAP percentage of 20%.
             '''
-        sys_prmpt3 = '''###Note
+        sys_prmpt3 = '''if you encounter error while retriving data then print the error in human readable formate with detials of error'''
+        sys_prmpt4 = '''###Note
         "If your response contains bullet point or table or list or heading return it in HTML format for easy rendering also mimic like a real human"'''
+        
         assistant = taskingai.assistant.create_assistant(
             model_id= self.model_id,
             name= self.assistant_name,
@@ -51,7 +53,8 @@ class Assistant:
             system_prompt_template=[
                 sys_prmpt1,
                 sys_prmpt2,
-                sys_prmpt3
+                sys_prmpt3,
+                sys_prmpt4
             ],
             memory=AssistantNaiveMemory()
         )

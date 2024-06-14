@@ -29,18 +29,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [display, setDisplay] = useState(false)
-  const instructions = (
-    <p style={{ textAlign: 'center', marginTop: '1rem', marginBottom: '1rem' }}>
-      Welcome! I am an assistant here to help you with the asphalt mixturet experiments records.
-    </p>
-  );
   return (
     <div className="App" >
       {/* <ChatWindow/> */}
       {/* <UploadFile/> */}
-
-      <RouterProvider router={router} />
+      <AssistantCards />
+      {/* <RouterProvider router={router} /> */}
       {/* <ClickableComponent/> */}
     </div>
   );
