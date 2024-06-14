@@ -9,7 +9,7 @@ export const ApiCall = async (message, link) => {
             },
             body: JSON.stringify({ message })
         });
-        
+        console.log(`React app url ${process.env.REACT_APP_API_URL}`)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
