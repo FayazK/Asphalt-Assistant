@@ -1,9 +1,8 @@
-import config from "../config";
+
 
 export const ApiCall = async (message, link) => {
-    console.log(`link api.js === ${link}`)
     try {
-        const response = await fetch(`${config.apiUrl}/ask/${link}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/ask/${link}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

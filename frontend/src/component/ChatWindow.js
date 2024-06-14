@@ -6,7 +6,6 @@ import { ApiCall } from "./Api";
 import { Spin } from "antd";
 
 export default function ChatWindow({ link }){
-    console.log(`linnnnnn ${link}`)
     const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
     const [loading, setLoading] = useState(false)
 
@@ -16,7 +15,6 @@ export default function ChatWindow({ link }){
 
         try {
             const responseData = await ApiCall(question, link);
-            console.log(`link chatwindow.js === ${link}`)
             updateAnswer(responseData.message, question);
         } catch (error) {
             console.error('Error fetching data:', error);

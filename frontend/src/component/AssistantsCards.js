@@ -3,7 +3,6 @@ import { Card, Row, Col, Alert, error } from 'antd';
 import UploadFile from './Uploadfile';
 import ChatWindow from './ChatWindow';
 import { BrowserRouter } from 'react-router-dom';
-import config from "../config";
 import { Outlet, useNavigate, Navigate } from 'react-router-dom';
 const { Meta } = Card;
 
@@ -28,7 +27,7 @@ const AssistantCards = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${config.apiUrl}/`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/`);
       const jsonData = await response.json();
       setData(jsonData);
 

@@ -2,7 +2,6 @@ import './App.css';
 import UploadFile from './component/Uploadfile'
 import AssistantCards from './component/AssistantsCards';
 import ChatWindow from './component/ChatWindow';
-import ClickableComponent from './component/Test'
 import {useState} from 'react'
 import {
   createBrowserRouter,
