@@ -4,11 +4,11 @@ DATABASE_API_SCHEMA = {
     "info": {
         "title": "Local Database API",
         "version": "1.0.0",
-        "description": "API for fetching project information from a local database"
+        "description": "API for fetching project information from a database"
     },
     "servers": [
         {
-            "url": "https://alfred.fayazk.com"
+            "url": "https://api.alfred.fayazk.com"
         }
     ],
     "paths": {

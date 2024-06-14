@@ -10,7 +10,6 @@ from creating_database import database
 from dotenv import load_dotenv
 import os
 
-
 def convert_excel_to_html(excel_path, html_path):
     df = pd.read_excel(excel_path)
     df.to_html(html_path)
@@ -83,21 +82,22 @@ def File_Upload():
         datab = database()
         datab.set_path(f"./{UPLOAD_FOLDER}/{file.filename}")
         datab.upload_data(assistant_id,collection_id)
-        datab.insert_rows()
+        #datab.insert_rows() #To avoid uploading the duplicate entries in the database because all the uploaded file have same enteries
         return jsonify({"message": "File uploaded successfully", "filename": file.filename}), 200
 
 @app.route('/ask/<assistant_id>', methods=['POST'])
 def index(assistant_id):
+    chat_ids_dict = {"X5lMzHw9btOeb8Uen6mSTpZO":"SdELGnWXJya2fU2L1aUedgKy","X5lMXR1WoyggYdIaOrUNKfBm":"SdELhSxZggJBjUY28R5gi7BP","X5lMPVJWpS8hF1rdkDm10II3":"SdELSroVWAWwPhZZpw0itTxy","X5lMONdwaPHBFngspLbAdpmV":"SdELYHCo8GwGqC1BoWlepetf"}
     if request.method == "POST":
         data = request.json
         u_input = data.get('message')
         if u_input:
-            chat = chat_creation(assistant_id=assistant_id)
-            response = chat_with_assitant(chat_id=chat.chat_id, assist_id=assistant_id, u_input = u_input)
+            #chat = chat_creation(assistant_id=assistant_id)  chat.chat_id
+            response = chat_with_assitant(chat_id= chat_ids_dict[assistant_id], assist_id=assistant_id, u_input = u_input)
             return jsonify({'message': response.content.text})
         else:
             return jsonify({'error': 'No message provided'}), 400
-    
+
 if __name__ == '__main__':
     port = int(os.getenv('FLASK_PORT'))
     flask_host = os.getenv('FLASK_HOST')
