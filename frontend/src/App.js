@@ -2,10 +2,11 @@ import './App.css';
 import UploadFile from './component/Uploadfile'
 import AssistantCards from './component/AssistantsCards';
 import ChatWindow from './component/ChatWindow';
-import {useState} from 'react'
+import Error from './component/Error';
 import {
   createBrowserRouter,
   RouterProvider,
+  Outlet
 } from "react-router-dom";
 
 
@@ -13,18 +14,19 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <AssistantCards />,
-    children: [
-      {
-        path: 'upload',
-        element: <UploadFile />
-      },
-      {
-        path: 'chat',
-        element: <ChatWindow />
-        
-      }
-    ]
-  }
+  },
+  {
+    path: "upload",
+    element: <UploadFile/>,
+  },
+  {
+    path: "chat/:assist_id",
+    element: <ChatWindow/>, 
+  },
+  {
+    path: "*",
+    element: <Error/>, 
+  },
 ]);
 
 function App() {
@@ -32,8 +34,9 @@ function App() {
     <div className="App" >
       {/* <ChatWindow/> */}
       {/* <UploadFile/> */}
-      <AssistantCards />
-      {/* <RouterProvider router={router} /> */}
+      {/* <AssistantCards /> */}
+      <RouterProvider router={router} />
+      <Outlet />
       {/* <ClickableComponent/> */}
     </div>
   );

@@ -89,6 +89,7 @@ def File_Upload():
 @app.route('/ask/<assistant_id>', methods=['POST'])
 def index(assistant_id):
     chat_ids_dict = {"X5lMLXvYNm0RsOPmKCzqO6gf":"SdELRQptDqfk0gs4FxA0Bp24","X5lMc0TbYE4hif57CJe2CqQA":"SdELxEsIk1Zmg4ke73K2FQ7V","X5lMKlcWhCj5xWR7whSfmWyr":"SdELBJ7uj8V8Skf960Kr05Ri","X5lMuWyzGYpKiGYtmEebYmwr":"SdELaNDly2FXABz2vC4OAU9R","X5lMLu1RSKt18nlLMn9n1MbJ":"SdELet7b1BjqGFWFVoAoDzHo"}
+    print('assistant id == ',assistant_id)
     if request.method == "POST":
         data = request.json
         u_input = data.get('message')

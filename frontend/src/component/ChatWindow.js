@@ -4,17 +4,21 @@ import Message from "./Message";
 import { useState } from "react";
 import { ApiCall } from "./Api";
 import { Spin } from "antd";
+import { useParams } from "react-router-dom";
 
-export default function ChatWindow({ link }){
+export default function ChatWindow(){
+    
     const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
     const [loading, setLoading] = useState(false)
 
+    const { assist_id } = useParams();
+    console.log(`assistid in chtwindow == ${assist_id}`)
     const handleQuestionSubmit = async (question) => {
         setQuestionsAndAnswers(prevState => [...prevState, { question, answer: '' }]); 
         setLoading(true);
 
         try {
-            const responseData = await ApiCall(question, link);
+            const responseData = await ApiCall(question, assist_id);
             updateAnswer(responseData.message, question);
         } catch (error) {
             console.error('Error fetching data:', error);

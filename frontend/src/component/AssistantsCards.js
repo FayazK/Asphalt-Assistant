@@ -3,7 +3,7 @@ import { Card, Row, Col, Alert, error } from 'antd';
 import UploadFile from './Uploadfile';
 import ChatWindow from './ChatWindow';
 import { BrowserRouter } from 'react-router-dom';
-import { Outlet, useNavigate, Navigate } from 'react-router-dom';
+import { Outlet, useNavigate, Navigate,useParams , Link } from 'react-router-dom';
 const { Meta } = Card;
 
 const cardStyle = {
@@ -24,7 +24,7 @@ const AssistantCards = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  const navigate = useNavigate();
   const fetchData = async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/`);
@@ -47,7 +47,6 @@ const AssistantCards = () => {
       console.error('Response data:', error.response.data);
     }
   };
-  const navigate = useNavigate();
   const handleClick = (e, name, link) => {
     e.preventDefault()
     setQuery(name)
@@ -55,9 +54,10 @@ const AssistantCards = () => {
     if (name === "Add new") {
       navigate('/upload');
     } else {
-      navigate('/chat');
+      navigate(`/chat/${link}`);
     }
   }
+  
   if (error) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -78,8 +78,9 @@ const AssistantCards = () => {
               md={6}
               style={{ padding: 0, display: 'flex', justifyContent: 'center', margin: '10px' }}
             >
-              <a
-                href={item.link}
+          
+              <Link
+                to={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none', display: 'block' }}
@@ -105,7 +106,7 @@ const AssistantCards = () => {
                     `}
                   </style>
                 </Card>
-              </a>
+              </Link>
             </Col>
           ))}
         </Row>
@@ -118,7 +119,7 @@ const AssistantCards = () => {
     )
   } else {
     return (
-      <ChatWindow link={link} />
+      <ChatWindow />
     )
 
   }
