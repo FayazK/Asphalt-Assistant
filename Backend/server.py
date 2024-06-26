@@ -8,7 +8,6 @@ import taskingai
 from custom_assistant import create_or_fetch_assistant, create_assistant_only
 from creating_database import database
 from dotenv import load_dotenv
-import os
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -40,7 +39,6 @@ def show_records():
         con.commit()
     con.close()
     return jsonify(data)
-
 
 @app.route('/database/<path:name>',methods=['GET'])
 def query_database(name):
@@ -88,7 +86,7 @@ def File_Upload():
         datab = database()
         datab.set_path(f"./{UPLOAD_FOLDER}/{file.filename}")
         datab.upload_data(assistant_id,collection_id)
-        datab.insert_rows() #insert all the records in a file
+        #datab.insert_rows() #insert all the records in a file
         return jsonify({"message": "File uploaded successfully", "filename": file.filename}), 200
 
 @app.route("/create_assistant",  methods=['GET','POST'])
