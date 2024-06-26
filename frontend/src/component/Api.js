@@ -1,17 +1,14 @@
-
-// React app url http://127.0.0.1:5000/ask/X5lMLu1RSKt18nlLMn9n1MbJ
-// Message content how are you
-export const ApiCall = async (message, link) => {
+export const ApiCall = async (message, link,chat_id) => {
+    // message: conecnt of message, link: uuid of particular record, chat_id: chat_id (can be null or have id valu)
     try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/ask/${link}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ message })
+            body: JSON.stringify({ message, chat_id })
         });
         console.log(`React app url ${process.env.REACT_APP_API_URL}/ask/${link}`)
-        console.log(`Message content ${message}`)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

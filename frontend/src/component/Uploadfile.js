@@ -41,7 +41,7 @@ const containerstyle = {
 const props = {
     name: 'file',
     multiple: false,
-    action: 'http://localhost:5000/upload',
+    action: `${process.env.REACT_APP_API_URL}/upload`,
     onChange(info) {
         const { status, response  } = info.file;
         if (status !== 'uploading') {

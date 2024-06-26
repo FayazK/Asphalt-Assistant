@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: <UploadFile/>,
   },
   {
-    path: "chat/:assist_id",
+    path: "chat/:uuid",
     element: <ChatWindow/>, 
   },
   {

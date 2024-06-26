@@ -24,6 +24,17 @@ class database:
             print("Record successfully added")
         con.close()
 
+    def update_assistant_data(assistant_id,uuid):
+        with sql.connect("database.db") as con:
+            cur = con.cursor()
+            cur.execute('''UPDATE files
+                           SET assistant_id = ?
+                           WHERE uuid = ?''',
+                        (assistant_id, uuid))
+            con.commit()
+            print("Record successfully updated")
+        con.close()
+
     def insert_rows(self):
         data = pd.read_excel(self.path,skiprows=1)
         data = data.drop(['Voids', '% AC', 'Avg. RRI', 'Avg. SIP','Avg. Rut Depth', 'Specimen'], axis = 1)

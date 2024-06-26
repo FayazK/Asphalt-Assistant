@@ -11,14 +11,22 @@ export default function ChatWindow(){
     const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
     const [loading, setLoading] = useState(false)
 
-    const { assist_id } = useParams();
-    console.log(`assistid in chtwindow == ${assist_id}`)
+    const { uuid } = useParams();
+    console.log(`assistid in chtwindow == ${uuid}`)
     const handleQuestionSubmit = async (question) => {
         setQuestionsAndAnswers(prevState => [...prevState, { question, answer: '' }]); 
         setLoading(true);
 
         try {
-            const responseData = await ApiCall(question, assist_id);
+            const responseData = await ApiCall(question, uuid,localStorage.getItem(`chat_id_${uuid}`));
+            const chat_id = responseData.chat_id
+            const assistant_id = responseData.uuid
+
+            const storedChatId = localStorage.getItem(`chat_id_${uuid}`);
+            if (storedChatId === null) {
+                localStorage.setItem(`chat_id_${uuid}`, chat_id);
+              }
+            
             updateAnswer(responseData.message, question);
         } catch (error) {
             console.error('Error fetching data:', error);

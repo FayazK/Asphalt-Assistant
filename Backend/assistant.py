@@ -11,15 +11,32 @@ def chat_creation(assistant_id):
     chat = taskingai.assistant.create_chat(
     assistant_id = assistant_id)
     return chat
+ 
+# def chat_with_assitant(chat_id, assist_id, u_input):
+#     #Create message
+#     message = taskingai.assistant.create_message(
+#     assistant_id= assist_id,
+#     chat_id=chat_id,
+#     text=u_input,)
+#     #Call the assistant
+#     response = taskingai.assistant.generate_message(
+#     assistant_id= assist_id,
+#     chat_id= chat_id,)
+    
+#     return response
 
 def chat_with_assitant(chat_id, assist_id, u_input):
-    #Create message
+    # Create message    
     message = taskingai.assistant.create_message(
-    assistant_id= assist_id,
-    chat_id=chat_id,
-    text=u_input,)
-    #Call the assistant
+            assistant_id=assist_id,
+            chat_id=chat_id,
+            text=u_input
+        )
+        
+    # Call the assistant to generate a response
     response = taskingai.assistant.generate_message(
-    assistant_id= assist_id,
-    chat_id= chat_id,)
+            assistant_id=assist_id,
+            chat_id=chat_id
+        )
     return response
+    
